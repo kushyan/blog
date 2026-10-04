@@ -3,6 +3,7 @@
 /resources/_gen/
 hugo_stats.json
 .hugo_build.lock
+.hugo_cache/
 
 # 本地工具（Hugo 二进制、npm 缓存等，不入库）
 /tools/

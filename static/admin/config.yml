@@ -1,0 +1,52 @@
+# ============================================================
+#  Decap CMS 配置 —— 博客可视化写作后台
+#  后台入口： https://kushyan.github.io/blog/admin/
+#  ============================================================
+
+backend:
+  name: github
+  repo: kushyan/blog            # 你的仓库
+  branch: main                  # 发布分支
+  # ↓ 替换成你部署的 OAuth 代理地址（见 deploy/oauth-worker.js 的说明）
+  base_url: https://YOUR-WORKER.workers.dev
+
+# 站点地址（用于后台里的“预览”链接）
+site_url: https://kushyan.github.io/blog/
+display_url: https://kushyan.github.io/blog/
+
+# 图片上传位置：上传到仓库 static/images/，文章中引用 /blog/images/xxx
+media_folder: "static/images"
+public_folder: "/blog/images"
+
+collections:
+  - name: "posts"
+    label: "文章"
+    label_singular: "文章"
+    folder: "content/posts"
+    create: true
+    slug: "{{fields.slug}}"
+    # 列表里显示“标题 — 日期”
+    summary: "{{title}} — {{date}}"
+    sortable_fields: ["date", "title"]
+    fields:
+      - { label: "标题", name: "title", widget: "string" }
+      - label: "英文别名（URL）"
+        name: "slug"
+        widget: "string"
+        hint: "文章链接用，小写英文 + 连字符，例如 my-first-post。发布后不要修改，否则旧链接会失效。"
+      - label: "发布日期"
+        name: "date"
+        widget: "datetime"
+        format: "YYYY-MM-DD"
+        date_format: "YYYY-MM-DD"
+        time_format: false
+      - { label: "作者", name: "author", widget: "string", default: "Kushyan" }
+      - { label: "摘要", name: "description", widget: "text", required: false, hint: "用于列表和社交分享卡片，一两句话即可" }
+      - { label: "分类", name: "categories", widget: "list", required: false, hint: "一般一个，如：技术笔记 / 阅读摘录 / 生活随笔" }
+      - { label: "标签", name: "tags", widget: "list", required: false }
+      - { label: "系列", name: "series", widget: "list", required: false, hint: "同一系列的文章会自动前后串联" }
+      - { label: "显示目录", name: "ShowToc", widget: "boolean", default: true, required: false }
+      - { label: "显示阅读时长", name: "ShowReadingTime", widget: "boolean", default: true, required: false }
+      - { label: "允许评论", name: "comments", widget: "boolean", default: true, required: false }
+      - { label: "保存为草稿（暂不发布）", name: "draft", widget: "boolean", default: false, required: false, hint: "勾选后线上不显示，取消勾选即发布" }
+      - { label: "正文", name: "body", widget: "markdown" }

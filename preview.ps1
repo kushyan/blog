@@ -18,7 +18,7 @@ if (-not (Test-Path $hugo)) {
     $hugo = 'hugo'
 }
 
-$args = @('server', '--bind', '127.0.0.1', '--port', "$Port", '--baseURL', "http://127.0.0.1:$Port/", '--disableFastRender', '--navigateToChanged')
+$args = @('server', '--bind', '127.0.0.1', '--port', "$Port", '--baseURL', "http://127.0.0.1:$Port/", '--disableFastRender', '--navigateToChanged', '--cacheDir', (Join-Path $root '.hugo_cache'))
 if ($Drafts) { $args += '--buildDrafts' }
 
 Write-Host "预览地址： http://127.0.0.1:$Port/   （Ctrl+C 停止）" -ForegroundColor Green
