@@ -38,7 +38,6 @@ buildFuture = false
       description = "记录技术、阅读与生活的地方"
       author = "Kushyan"
       homeInfoParams = { Title = "你好，我是 Kushyan 👋", Content = "这里记录我的技术笔记、阅读摘录与生活随笔。用标签和分类可以快速找到你感兴趣的内容。" }
-      socialIcons = []
       [languages.zh.params.profileMode]
         enabled = false
         title = "Kushyan 的博客"

@@ -18,3 +18,6 @@ Thumbs.db
 .idea/
 .vscode/
 *.log
+
+# 本地截图预览（不入库）
+/_shots/
