@@ -148,9 +148,9 @@ buildFuture = false
   # 并确保仓库已开启 Discussions、已安装 giscus App。
   [params.giscus]
     repo = "kushyan/blog"
-    repoId = "REPLACE_WITH_REPO_ID"
+    repoId = "R_kgDOU7Wd6Q"
     category = "Announcements"
-    categoryId = "REPLACE_WITH_CATEGORY_ID"
+    categoryId = "DIC_kwDOU7Wd6c4DHBho"
     mapping = "pathname"
     strict = "0"
     reactionsEnabled = "1"
