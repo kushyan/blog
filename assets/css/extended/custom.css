@@ -1,0 +1,89 @@
+/* ============================================================
+   站点自定义样式（PaperMod 会自动加载 assets/css/extended/ 下所有 css）
+   ============================================================ */
+
+/* ---------- 1. 评论区 ---------- */
+.comments {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border);
+}
+
+.comments-title {
+    font-size: 1.25rem;
+    margin: 0 0 .35rem;
+}
+
+.comments-hint {
+    font-size: .85rem;
+    color: var(--secondary);
+    margin: 0 0 1.25rem;
+}
+
+.comments-placeholder {
+    padding: 1rem 1.25rem;
+    border: 1px dashed var(--border);
+    border-radius: var(--radius);
+    background: var(--code-bg);
+}
+
+.comments-placeholder code {
+    font-size: .8rem;
+}
+
+/* giscus iframe 自适应 */
+.giscus,
+.giscus-frame {
+    width: 100%;
+    border: none;
+}
+
+/* ---------- 2. 代码块更易读 ---------- */
+.post-content pre code {
+    font-size: .875rem;
+    line-height: 1.6;
+}
+
+.post-content pre {
+    border-radius: var(--radius);
+}
+
+/* ---------- 3. 表格：窄屏可横向滚动 ---------- */
+.post-content table {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    border-collapse: collapse;
+}
+
+.post-content table th {
+    background: var(--code-bg);
+    white-space: nowrap;
+}
+
+/* ---------- 4. 标签与分类 ---------- */
+.terms-tags li a,
+.post-tags a {
+    border-radius: 999px;
+}
+
+/* ---------- 5. 文章首屏信息更紧凑 ---------- */
+.post-header {
+    margin-bottom: 1.25rem;
+}
+
+.post-meta {
+    font-size: .85rem;
+}
+
+/* ---------- 6. 首页信息块：给标题一点呼吸感 ---------- */
+.home-info .entry-content {
+    line-height: 1.75;
+}
+
+/* ---------- 7. 深色模式下引用块对比度 ---------- */
+.post-content blockquote {
+    border-inline-start: 3px solid var(--tertiary);
+    padding-inline-start: .9rem;
+    color: var(--secondary);
+}

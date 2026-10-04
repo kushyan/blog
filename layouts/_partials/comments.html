@@ -1,0 +1,40 @@
+{{- /*
+  Giscus 评论（基于 GitHub Discussions）
+  配置位置：hugo.toml -> [params.giscus]
+  必须先完成：
+    1. 仓库开启 Discussions
+    2. 给仓库安装 giscus App（https://github.com/apps/giscus）
+    3. 到 https://giscus.app/zh-CN 生成 repoId 与 categoryId 并填回 hugo.toml
+*/ -}}
+{{- $g := site.Params.giscus }}
+{{- $enabled := and (site.Params.comments | default true) (ne ($g.repoId | default "") "") (not (strings.Contains ($g.repoId | default "") "REPLACE")) }}
+{{- if $enabled }}
+<div class="comments" id="comments">
+  <h2 class="comments-title">评论</h2>
+  <p class="comments-hint">用 GitHub 账号登录后即可留言，评论会同步到本仓库的 Discussions。</p>
+  <script src="https://giscus.app/client.js"
+    data-repo="{{ $g.repo }}"
+    data-repo-id="{{ $g.repoId }}"
+    data-category="{{ $g.category }}"
+    data-category-id="{{ $g.categoryId }}"
+    data-mapping="{{ $g.mapping | default "pathname" }}"
+    data-strict="{{ $g.strict | default "0" }}"
+    data-reactions-enabled="{{ $g.reactionsEnabled | default "1" }}"
+    data-emit-metadata="{{ $g.emitMetadata | default "0" }}"
+    data-input-position="{{ $g.inputPosition | default "top" }}"
+    data-theme="{{ $g.theme | default "preferred_color_scheme" }}"
+    data-lang="{{ $g.lang | default "zh-CN" }}"
+    data-loading="{{ $g.loading | default "lazy" }}"
+    crossorigin="anonymous"
+    async>
+  </script>
+</div>
+{{- else }}
+<div class="comments comments-placeholder" id="comments">
+  <h2 class="comments-title">评论</h2>
+  <p class="comments-hint">
+    评论区尚未启用。请到 <code>hugo.toml</code> 的 <code>[params.giscus]</code> 填入
+    <code>repoId</code> 与 <code>categoryId</code>（在 <a href="https://giscus.app/zh-CN" target="_blank" rel="noopener">giscus.app</a> 生成）。
+  </p>
+</div>
+{{- end }}

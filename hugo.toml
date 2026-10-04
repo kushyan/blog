@@ -1,0 +1,179 @@
+# ============================================================
+#  Hugo 站点主配置
+#  项目结构说明见 README.md
+#  GitHub Pages 仓库地址：https://github.com/kushyan/blog
+# ============================================================
+
+baseURL = "https://kushyan.github.io/blog/"
+title = "Kushyan 的博客"
+theme = "PaperMod"
+locale = "zh-cn"
+defaultContentLanguage = "zh"
+hasCJKLanguage = true
+
+# 每页文章数 / 分页
+paginate = 10
+enableRobotsTXT = true
+enableEmoji = true
+buildDrafts = false
+buildFuture = false
+
+# 生成漂亮的 URL
+[permalinks]
+  posts = "/posts/:slug/"
+
+# ---------- 输出格式：RSS + 搜索索引 ----------
+[outputs]
+  home = ["HTML", "RSS", "JSON"]
+  section = ["HTML", "RSS"]
+  term = ["HTML", "RSS"]
+
+# ---------- 多语言：如何启用英文，把下面 [languages.en] 的注释去掉即可 ----------
+[languages]
+  [languages.zh]
+    label = "中文"
+    weight = 1
+    title = "Kushyan 的博客"
+    [languages.zh.params]
+      description = "记录技术、阅读与生活的地方"
+      author = "Kushyan"
+      homeInfoParams = { Title = "你好，我是 Kushyan 👋", Content = "这里记录我的技术笔记、阅读摘录与生活随笔。用标签和分类可以快速找到你感兴趣的内容。" }
+      socialIcons = []
+      [languages.zh.params.profileMode]
+        enabled = false
+        title = "Kushyan 的博客"
+        subtitle = "记录技术、阅读与生活"
+        imageUrl = ""
+        imageWidth = 120
+        imageHeight = 120
+  # [languages.en]
+  #   label = "English"
+  #   weight = 2
+  #   title = "Kushyan's Blog"
+  #   [languages.en.params]
+  #     description = "Notes on tech, reading and life"
+  #     author = "Kushyan"
+
+# ---------- 菜单：功能区块一目了然 ----------
+[languages.zh.menu]
+  [[languages.zh.menu.main]]
+    identifier = "posts"
+    name = "文章"
+    url = "/posts/"
+    weight = 10
+  [[languages.zh.menu.main]]
+    identifier = "categories"
+    name = "分类"
+    url = "/categories/"
+    weight = 20
+  [[languages.zh.menu.main]]
+    identifier = "tags"
+    name = "标签"
+    url = "/tags/"
+    weight = 30
+  [[languages.zh.menu.main]]
+    identifier = "archives"
+    name = "归档"
+    url = "/archives/"
+    weight = 40
+  [[languages.zh.menu.main]]
+    identifier = "search"
+    name = "搜索"
+    url = "/search/"
+    weight = 50
+  [[languages.zh.menu.main]]
+    identifier = "about"
+    name = "关于"
+    url = "/about/"
+    weight = 60
+
+# ============================================================
+#  主题参数
+# ============================================================
+[params]
+  env = "production"
+  description = "记录技术、阅读与生活的地方"
+  author = "Kushyan"
+  DateFormat = "2006-01-02"
+  defaultTheme = "auto"          # auto / dark / light
+  disableThemeToggle = false     # 显示明暗切换按钮
+  ShowShareButtons = true
+  ShowReadingTime = true
+  ShowPostNavLinks = true
+  ShowBreadCrumbs = true
+  ShowCodeCopyButtons = true
+  ShowWordCount = true
+  ShowRssButtonInSectionTermList = true
+  ShowAllPagesInArchive = true
+  ShowPageNums = true
+  ShowToc = true                 # 文章目录
+  TocOpen = false
+  comments = true                # 全局开启评论（文章可在 front matter 里单独关）
+
+  # 首页信息块
+  homeInfoParams = { Title = "你好，我是 Kushyan 👋", Content = "这里记录我的技术笔记、阅读摘录与生活随笔。用标签和分类可以快速找到你感兴趣的内容。" }
+
+  # 首页底部社交图标
+  [[params.socialIcons]]
+    name = "github"
+    title = "GitHub"
+    url = "https://github.com/kushyan"
+  [[params.socialIcons]]
+    name = "rss"
+    title = "RSS"
+    url = "/index.xml"
+
+  # ---------- 文章页展示 ----------
+  [params.assets]
+    disableHLJS = true
+    # 站点图标见 static/favicon.svg（由 layouts/_partials/head.html 引用）
+
+  # ---------- 代码高亮 ----------
+  [markup]
+    [markup.goldmark]
+      [markup.goldmark.renderer]
+        unsafe = true              # 允许 Markdown 里写 HTML
+    [markup.highlight]
+      noClasses = false
+      codeFences = true
+      guessSyntax = true
+      lineNos = false
+      style = "monokai"
+
+  # ---------- 搜索 ----------
+  [params.search]
+    enable = true
+
+  # ---------- Giscus 评论（基于 GitHub Discussions，免费无广告）----------
+  # 部署后请到 https://giscus.app/zh-CN 用你的仓库生成下面 4 个值，
+  # 并确保仓库已开启 Discussions、已安装 giscus App。
+  [params.giscus]
+    repo = "kushyan/blog"
+    repoId = "REPLACE_WITH_REPO_ID"
+    category = "Announcements"
+    categoryId = "REPLACE_WITH_CATEGORY_ID"
+    mapping = "pathname"
+    strict = "0"
+    reactionsEnabled = "1"
+    emitMetadata = "0"
+    inputPosition = "top"
+    theme = "preferred_color_scheme"
+    lang = "zh-CN"
+    loading = "lazy"
+
+# ---------- 永久链接与分类法 ----------
+[taxonomies]
+  category = "categories"
+  tag = "tags"
+  series = "series"
+
+[frontmatter]
+  lastmod = ["lastmod", ":fileModTime", ":git", "date"]
+
+[minify]
+  minifyOutput = true
+
+[sitemap]
+  changefreq = "weekly"
+  priority = 0.5
+  filename = "sitemap.xml"
