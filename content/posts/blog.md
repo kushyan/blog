@@ -27,7 +27,35 @@ draft: false
 
 # 二、这次做过的步骤，各自的作用
 
-1装好 Hugo（本地）让电脑能生成网页、能本地预览2放好 PaperMod 主题决定外观3写 `hugo.toml`站点总配置：标题、菜单、开关4写好第一批文章 + 页面填充内容（首页/关于/归档/搜索）5重做视觉（自定义 CSS）换成现代极简高级灰 UI6加 GitHub Actions 工作流让部署自动化，以后不用手动发布7加 Decap CMS 后台实现"不用命令行写文章"8写 Cloudflare Worker 脚本解决后台登录问题9建 GitHub 仓库并推送把代码放上云端10Pages 的 Source 改为 GitHub Actions让网站用**构建产物**，而不是直接把仓库当网站11部署 Cloudflare Worker让"中介"上线12建 GitHub OAuth App拿到 Client ID / Secret 这对钥匙13把两个密钥填进 Worker让中介能证明身份（这一步之前缺失，导致 `client_id=undefined`）14把 Worker 地址填进 `config.yml`告诉后台"登录该找谁"15修掉地址末尾多余的 `/`解决登录 404
+1装好 Hugo（本地）让电脑能生成网页、能本地预览
+
+2放好 PaperMod 主题决定外观
+
+3写 `hugo.toml`站点总配置：标题、菜单、开关
+
+4写好第一批文章 + 页面填充内容（首页/关于/归档/搜索）
+
+5重做视觉（自定义 CSS）换成现代极简高级灰 UI
+
+6加 GitHub Actions 工作流让部署自动化，以后不用手动发布
+
+7加 Decap CMS 后台实现"不用命令行写文章"
+
+8写 Cloudflare Worker 脚本解决后台登录问题
+
+9建 GitHub 仓库并推送把代码放上云端
+
+10Pages 的 Source 改为 GitHub Actions让网站用**构建产物**，而不是直接把仓库当网站
+
+11部署 Cloudflare Worker让"中介"上线
+
+12建 GitHub OAuth App拿到 Client ID / Secret 这对钥匙
+
+13把两个密钥填进 Worker让中介能证明身份（这一步之前缺失，导致 `client_id=undefined`）
+
+14把 Worker 地址填进 `config.yml`告诉后台"登录该找谁"
+
+15修掉地址末尾多余的 `/`解决登录 404
 
 # 三、注意事项（重要）
 
