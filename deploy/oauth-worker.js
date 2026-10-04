@@ -30,6 +30,9 @@ export default {
   async fetch(request, env) {
     const url = new URL(request.url);
 
+    // 归一化路径：容忍 //auth、/auth/ 这类多写斜杠的情况
+    const path = "/" + url.pathname.split("/").filter(Boolean).join("/");
+
     const clientId = env.GITHUB_CLIENT_ID;
     const clientSecret = env.GITHUB_CLIENT_SECRET;
 
@@ -37,7 +40,7 @@ export default {
     const GH_TOKEN = "https://github.com/login/oauth/access_token";
 
     // 第 1 步：Decap 打开 /auth，这里重定向到 GitHub 授权页
-    if (url.pathname === "/auth") {
+    if (path === "/auth") {
       const q = new URLSearchParams({
         client_id: clientId,
         redirect_uri: url.origin + "/callback",
@@ -50,7 +53,7 @@ export default {
     }
 
     // 第 2 步：GitHub 授权后回调 /callback?code=xxx，用 code 换 token
-    if (url.pathname === "/callback") {
+    if (path === "/callback") {
       const code = url.searchParams.get("code");
       if (!code) return new Response("缺少 code 参数", { status: 400 });
 
@@ -102,7 +105,7 @@ export default {
       });
     }
 
-    if (url.pathname === "/") {
+    if (path === "/") {
       return new Response("Decap CMS OAuth 代理运行中", {
         headers: { "Content-Type": "text/plain; charset=utf-8" },
       });

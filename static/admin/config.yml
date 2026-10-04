@@ -8,7 +8,7 @@ backend:
   repo: kushyan/blog            # 你的仓库
   branch: main                  # 发布分支
   # ↓ 替换成你部署的 OAuth 代理地址（见 deploy/oauth-worker.js 的说明）
-  base_url: https://jolly-voice-5467.2952832309.workers.dev/
+  base_url: https://jolly-voice-5467.2952832309.workers.dev
 
 # 站点地址（用于后台里的“预览”链接）
 site_url: https://kushyan.github.io/blog/
