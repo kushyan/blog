@@ -4,24 +4,24 @@
 //        Cloudflare Workers 上，负责「登录 → 换取访问令牌」这一环。
 //
 //  部署步骤（全程网页操作，无需命令行）：
-//  1. 在 GitHub 新建 OAuth App：
-//     https://github.com/settings/developers  →  New OAuth App
-//       - Application name:   我的博客后台
-//       - Homepage URL:       https://kushyan.github.io/blog/
-//       - Authorization callback URL:  https://你的worker.workers.dev/callback
-//     创建后会得到 Client ID 和 Client Secret（点 Generate a new client secret）。
-//
-//  2. 在 Cloudflare 新建 Worker：
+//  1. 在 Cloudflare 新建 Worker：
 //     https://dash.cloudflare.com  →  Workers & Pages  →  Create  →  Create Worker
 //       - 删掉默认代码，粘贴本文件全部内容，点 Deploy。
 //       - 记下你的 worker 域名，形如 https://xxxx.your-subdomain.workers.dev
 //
+//  2. 在 GitHub 新建 OAuth App：
+//     https://github.com/settings/developers  →  New OAuth App
+//       - Application name:   我的博客后台
+//       - Homepage URL:       https://kushyan.github.io/blog/
+//       - Authorization callback URL:  https://xxxx.your-subdomain.workers.dev/callback
+//     创建后会得到 Client ID 和 Client Secret（点 Generate a new client secret）。
+//
 //  3. 给 Worker 添加两个密钥（Settings → Variables and Secrets → Add secret）：
-//       - 名称 GITHUB_CLIENT_ID    值：第 1 步的 Client ID
-//       - 名称 GITHUB_CLIENT_SECRET 值：第 1 步的 Client Secret
+//       - 名称 GITHUB_CLIENT_ID      值：第 2 步的 Client ID
+//       - 名称 GITHUB_CLIENT_SECRET  值：第 2 步的 Client Secret
 //
 //  4. 回到博客的 static/admin/config.yml，把 backend.base_url 改成
-//     https://你的worker.workers.dev（不带路径，不带末尾斜杠）。
+//     https://xxxx.your-subdomain.workers.dev（不带路径，不带末尾斜杠）。
 //
 //  完成。访问 https://kushyan.github.io/blog/admin/ 点“Login with GitHub”即可。
 // ============================================================

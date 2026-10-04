@@ -67,7 +67,14 @@ blog/
 
 后台登录需要 GitHub 授权，而 GitHub 要求授权走服务端，所以要用一个免费的 **Cloudflare Worker** 做中转。共四步，全部网页点选即可：
 
-**第 1 步：在 GitHub 建 OAuth App**
+**第 1 步：在 Cloudflare 建 Worker（拿到中转地址）**
+
+1. 打开 <https://dash.cloudflare.com> 注册/登录（免费）。
+2. 左侧 *Workers & Pages* → *Create* → *Create Worker*。
+3. 删掉默认代码，把仓库里的 [`deploy/oauth-worker.js`](deploy/oauth-worker.js) 全部内容粘贴进去，点 *Deploy*。
+4. 记下你的 Worker 域名，形如 `https://xxxx.your-subdomain.workers.dev`。
+
+**第 2 步：在 GitHub 建 OAuth App**
 
 打开 <https://github.com/settings/developers> → *OAuth Apps* → *New OAuth App*：
 
@@ -75,16 +82,9 @@ blog/
 | --- | --- |
 | Application name | 我的博客后台 |
 | Homepage URL | `https://kushyan.github.io/blog/` |
-| Authorization callback URL | `https://你的worker.workers.dev/callback` |
+| Authorization callback URL | `https://xxxx.your-subdomain.workers.dev/callback`（换成第 1 步的域名） |
 
 创建后得到 **Client ID**，再点 *Generate a new client secret* 得到 **Client Secret**（只显示一次，先复制保存）。
-
-**第 2 步：在 Cloudflare 建 Worker**
-
-1. 打开 <https://dash.cloudflare.com> 注册/登录（免费）。
-2. 左侧 *Workers & Pages* → *Create* → *Create Worker*。
-3. 删掉默认代码，把仓库里的 [`deploy/oauth-worker.js`](deploy/oauth-worker.js) 全部内容粘贴进去，点 *Deploy*。
-4. 记下你的 Worker 域名，形如 `https://xxxx.your-subdomain.workers.dev`。
 
 **第 3 步：给 Worker 填两个密钥**
 
@@ -92,8 +92,8 @@ blog/
 
 | 名称 | 值 |
 | --- | --- |
-| `GITHUB_CLIENT_ID` | 第 1 步的 Client ID |
-| `GITHUB_CLIENT_SECRET` | 第 1 步的 Client Secret |
+| `GITHUB_CLIENT_ID` | 第 2 步的 Client ID |
+| `GITHUB_CLIENT_SECRET` | 第 2 步的 Client Secret |
 
 **第 4 步：把 Worker 地址填回博客**
 
