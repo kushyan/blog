@@ -318,6 +318,14 @@ a:hover {
     line-height: 1.85;
 }
 
+/* 正文里若误用 H1 当小节标题，也按小节样式渲染，避免和文章大标题撞车 */
+.post-content h1 {
+    font-size: 26px;
+    margin: 2.2em 0 0.9em;
+    padding-bottom: 0.35em;
+    border-bottom: 1px solid var(--border);
+}
+
 .post-content h2 {
     font-size: 24px;
     margin: 2.2em 0 0.9em;

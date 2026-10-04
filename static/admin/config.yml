@@ -49,4 +49,7 @@ collections:
       - { label: "显示阅读时长", name: "ShowReadingTime", widget: "boolean", default: true, required: false }
       - { label: "允许评论", name: "comments", widget: "boolean", default: true, required: false }
       - { label: "保存为草稿（暂不发布）", name: "draft", widget: "boolean", default: false, required: false, hint: "勾选后线上不显示，取消勾选即发布" }
-      - { label: "正文", name: "body", widget: "markdown" }
+      - label: "正文"
+        name: "body"
+        widget: "markdown"
+        hint: "小节标题请用 H2（工具栏点 H2），不要用 H1 —— 文章大标题已经占用了 H1。"
